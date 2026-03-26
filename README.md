@@ -1,283 +1,247 @@
-EXP NO:1 C PROGRAM FOR ARRAY OF STRUCTURE TO CHECK ELIGIBILITY FOR THE VACCINE.
+## EXP NO 4A : C PROGRAM TO SEARCH A GIVEN ELEMENT IN THE GIVEN LINKED LIST.
 
-Aim:
-To write a C program for array of structure to check eligibility for the vaccine person age above 6 years of age.
+## Aim:
+To write a C program to search a given element in the given linked list.
 
-Algorithm:
-1.	Declare structure eligible with age (integer) and n (character array)
-2.	Declare variable e of type eligible
-3.	Input age and name using scanf, store in e
-4.	If e.age <= 6
--	Print "Vaccine Eligibility: No"
-Else
--	Print "Vaccine Eligibility: Yes"
-5.	Print details (e.age, e.n)
-6.	Return 0
+## Algorithm:
+1.	Define the structure for a node in a linked list.
+2.	Define the search function to find a specific character in the linked list.
+3.	Initialize the head of the linked list as needed.
+4.	Call the search function and perform other linked list operations as needed.
  
-Program:
-```
-#include <stdio.h>
-#include <string.h>
-
-struct Person {
-    char name[50];
-    int age;
-};
-
-int main() {
-    struct Person p;
-    scanf("%d", &p.age);
-    scanf("%s", p.name);
-    printf("Age:%d\n", p.age);
-    printf("Name:%svaccine:%d\n",p.name,p.age);
-    
-   
-    if(p.age>6)
-    printf("eligibility:yes");
-    else
-    printf("eligibility:no");
-    return 0;
-}
-```
-
-
-
-Output:
-
-<img width="601" height="365" alt="image" src="https://github.com/user-attachments/assets/9030c4d8-c966-45c6-b123-6a6dbc7fd50a" />
-
-
-
-Result:
-Thus, the program is verified successfully. 
-
-
-
-EXP NO:2 C PROGRAM FOR PASSING STRUCTURES AS FUNCTION ARGUMENTS AND RETURNING A STRUCTURE FROM A FUNCTION
-Aim:
-To write a C program for passing structure as function and returning a structure from a function
-
-Algorithm:
-1.	Define structure numbers with members a and b.
-2.	Declare variable n of type numbers.
-3.	Prompt the user to enter values for a and b.
-4.	Input values for a and b into n using scanf.
-5.	Call the add function with n as an argument.
-6.	Print the result returned by the add function.
-7.	Return 0
- 
-Program:
-```
-#include<stdio.h>
-struct add
+## Program:
+```c
+struct Node{
+    struct Node *next; 
+    char data;
+}*head;
+void search(char data)
 {
-    int a,b;
-}n;
-int main()
-{
-    scanf("%d%d",&n.a,&n.b);
-    printf("%d",n.a+n.b);
-}
-```
-
-
-
-
-
-Output:
-
-<img width="338" height="312" alt="image" src="https://github.com/user-attachments/assets/7fa39410-4cee-4daf-9968-f887de3421c3" />
-
-
-
-
-
-Result:
-Thus, the program is verified successfully
-
-
- 
-EXP.NO:3 C PROGRAM TO READ A FILE NAME FROM USER AND WRITE THAT FILE USING FOPEN()
-
-Aim:
-To write a C program to read a file name from user
-
-Algorithm:
-1.	Include the necessary header file stdio.h.
-2.	Begin the main function.
-3.	Declare a file pointer p.
-Declare a character array name to store the file name.
-4.	Prompt the user to enter a file name.
-Use scanf to input the file name into the name array.
-5.	Print a message indicating that the file with the specified name has been created successfully.
-6.	Use fopen to open a file with the name provided by the user in write mode ("w").
--	If successful, continue to the next step.
--	If unsuccessful, print an error message and exit the program with a non-zero status.
-1.	Print a message indicating that the file has been opened successfully.
-2.	Use fclose to close the file.
-3.	Print a message indicating that the file has been closed.
-4.	End the main function.
-5.	Return 0 to indicate successful program execution.
- 
-Program:
-```
-#include <stdio.h>
-int main()
-{
-    FILE *fp;
-    char a[20];
-    scanf("%s",a);
-    printf("%s File Created Successfully\n",a);
-    fp = fopen("a","w");
-    printf("%s File Opened\n",a);
-    fclose(fp);
-    printf("%s File Closed\n",a);
-}
-```
-
-
-
-
-Output:
-
-<img width="963" height="457" alt="image" src="https://github.com/user-attachments/assets/adfad621-ba6d-4e0a-b0e8-322e546a62f2" />
-
-
-
-
-
-
-
-
-
-
-
-
-Result:
-Thus, the program is verified successfully
- 
-
-
-EXP NO:4   PROGRAM TO READ A FILE NAME FROM USER, WRITE THAT FILE AND INSERT TEXT IN TO THAT FILE
-Aim:
-To write a C program to read, a file and insert text in that file
-Algorithm:
-1.	Include the necessary header file stdio.h.
-2.	Begin the main function.
-3.	Declare a file pointer p.
-Declare character arrays name and text. Declare an integer variable num.
-4.	Prompt the user to enter a file name and the number of strings.
-Use scanf to input the file name into the name array and the number of strings into the num variable.
-5.	Use fopen to open a file with the name provided by the user in write mode ("w").
--	If successful, continue to the next step.
--	If unsuccessful, print an error message and exit the program with a non-zero status.
-6.	Print a message indicating that the file has been opened successfully.
-1.	Use a loop to input strings from the user and write them to the file using fputs.
-2.	Use fclose to close the file.
-3.	Print a message indicating that data has been added successfully.
-4.	End the main function.
-5.	Return 0 to indicate successful program execution.
- 
-Program:
-```
-#include <stdio.h>
-int main()
-{
-    FILE *fp;
-    char name[30] , b[30];
-    int a;
-    scanf("%s",name);
-    scanf("%d",&a);
-    fp = fopen("name" , "w");
-    printf("%s Opened\n",name);
-    for(int i=0 ; i<a ; i++)
+    struct Node *ptr;
+    char item=data; 
+    int i=0,flag;
+    ptr = head; 
+    if(ptr == NULL)
     {
-        scanf("%s",b);
-        fputs(b,fp);
+        printf("Empty List\n");  
     }
-    printf("Data added Successfully\n");
+    else
+    {
+        while (ptr!=NULL)
+        {
+            if(ptr->data == item)
+            {
+                printf("item %c found at location %d ",item,i+1); 
+                flag=0;    
+            }
+            i++;
+            ptr = ptr -> next;   
+        }
+        if(flag!=0)
+        {
+            printf("Item not found\n");
+        }
+}
 }
 ```
 
+## Output:
+![437945645-45f45c76-3cb7-4a4a-865e-7a555239b26c](https://github.com/user-attachments/assets/67a2e169-9456-47f9-9332-82d4ff5bf76f)
+
+## Result:
+Thus, the program to search a given element in the given linked list is verified successfully.
 
 
+ 
+## EXP NO 4B : PROGRAM TO INSERT A NODE IN A LINKED LIST.
 
-Output:
+## Aim:
+To write a C program to insert a node in a linked list.
 
-<img width="684" height="435" alt="image" src="https://github.com/user-attachments/assets/d0a4c39f-2f15-4954-8e2b-daf5f22f4951" />
-
-
-
-
-
-
-
-Result:
-Thus, the program is verified successfully
-
-
-
-Ex No 5 : C PROGRAM TO DISPLAY STUDENT DETAILS USING STRUCTURE
-
-Aim:
-The aim of this program is to dynamically allocate memory to store information about multiple subjects (name and marks), input the details for each subject, and then display the stored information. Finally, it frees the allocated memory to prevent memory leaks.
-
-Algorithm:
-1.Input the number of subjects.
-
-2.Read the integer value n from the user, which represents the number of subjects.
-
-3.Dynamically allocate memory:
-
-4.Use malloc to allocate memory for n subjects. Each subject has a name (array of characters) and marks (integer).
-
-5.If memory allocation fails (i.e., the pointer s is NULL), display an error message and exit the program.
-
-6.Input the details of each subject
-
-7.Use a for loop to read the name and marks of each subject using scanf. For each subject, store the name as a string and marks as an integer in the dynamically allocated memory.
-
-8.Display the details of each subject
-
-9.Use another for loop to print the name and marks of each subject.
-
-10.Free the allocated memory
-
-11.After all operations are done, call free(s) to release the dynamically allocated memory.
-
-12.Return from the main function
-
-13.End the program by returning 0.
-
-Program:
-```
-#include<stdio.h>
-struct std{
-    char name[20];
-    int roll;
-    float per;
-}acc;
-
-int main(){
-    scanf("%d",&acc.roll);
-    scanf("%s",acc.name);
-    scanf("%f",&acc.per);
-    printf("Rollno is: %d\n",acc.roll);
-    printf("Name is: %s\n",acc.name);
-    printf("Percentage is: %.2f",acc.per);
+## Algorithm:
+1.	Define the structure for a node in a linked list
+2.	Define the insert function to insert a new node with character data at the end of the linked list.
+3.	Initialize the head of the linked list as needed.
+4.	Call the insert function and perform other linked list operations as needed.
+ 
+## Program:
+```c
+struct Node{ 
+    char data;
+    struct Node *next;
+}*head;
+void insert(char data)
+{
+    struct Node *n=(struct Node*)malloc(sizeof(struct Node));
+    struct Node *temp;
+    if(head==NULL)
+    {
+        head=n;
+        n->data=data; 
+        n->next=NULL; 
+        temp=head; 
+        return;
+}
+while(temp->next!=NULL)
+{
+    temp=temp->next;
+}
+n->data=data; 
+n->next=NULL;
+temp->next=n;
 }
 ```
+## Output:
+![437945706-5dc2721e-0445-4c8c-bdbd-3f05bfbb5df5](https://github.com/user-attachments/assets/e19e8b50-6aab-4f44-b2a0-d8cf01383d3b)
+
+## Result:
+Thus, the program to insert a node in a linked list is verified successfully.
+
+
+ 
+## EXP NO 4C : C PROGRAM TO TRAVERSE A DOUBLY LINKED LIST
+
+## Aim:
+To write a C program to traverse a doubly linked list.
+
+## Algorithm:
+1.	Initialize a temporary pointer (temp) to the head of the list.
+2.	Use a while loop to traverse the list until the end (temp == NULL) is reached.
+3.	Inside the loop, print the data of the current node.
+4.	Move to the next node by updating the temp pointer to point to the next node (temp = temp->next).
+ 
+## Program:
+```c
+struct Node
+{
+    struct Node *prev; 
+    struct Node *next; 
+    int data;
+}*head;
+void display()
+{
+    struct Node *temp; 
+    temp=head; 
+    while(temp!=0)
+    {
+        printf("%d ",temp->data); 
+        temp=temp->next;
+        
+    }
+}
+```
+## Output:
+![437946649-3e117330-0103-4631-a146-d0cfa7751183](https://github.com/user-attachments/assets/2e4c00d2-8dd2-46f8-8bc3-52fa3cb8a1ec)
+
+## Result:
+Thus, the program to traverse a doubly linked list is verified successfully. 
 
 
 
-Output:
+## EXP NO 4D : C PROGRAM TO INSERT AN ELEMENT IN DOUBLY LINKED LIST
 
-<img width="568" height="256" alt="image" src="https://github.com/user-attachments/assets/038065a4-6bcd-4c0d-ba80-915d5ac8a86b" />
+## Aim:
+To write a C program to insert an element in doubly linked list
+
+## Algorithm:
+1.	Create a new node (newNode) and allocate memory for it.
+2.	Set the data of the new node to the provided value.
+3.	If the list is empty, set the new node as the head.
+4.	If the list is not empty, traverse the list to find the last node.
+5.	Set the new node's prev pointer to the last node and update the last node's next pointer to the new node.
+ 
+## Program:
+```c
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    float data;
+}*head;
+void insert(float data)
+{
+    struct Node *n=(struct Node*)malloc(sizeof(struct Node));
+    struct Node *temp;
+if(head==NULL)
+{
+    head=n;
+    n->data=data;
+    n->next=NULL; 
+    n->prev=NULL; 
+    temp=head;
+}
+else
+{
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;        
+    }
+    n->data=data; 
+    n->next=NULL; 
+    n->prev=temp; 
+    temp->next=n;  
+}
+}
+```
+## Output:
+![437945818-c4c242a5-4d06-4843-93f3-b40a3fae6af1](https://github.com/user-attachments/assets/b4f0ecb7-633e-4784-a76a-34715af67e61)
+
+## Result:
+Thus, the program to insert an element in doubly linked list is verified successfully.
 
 
 
+## EXP NO 4E : C FUNCTION TO DELETE A GIVEN ELEMENT IN THE GIVEN LINKED LIST
 
+## Aim:
+To write a C function that deletes a given element from a linked list.
 
+## Algorithm:
+1.	Check if the Linked List is Empty:
+o	If the head of the linked list is NULL, print a message indicating the list is empty and exit the function.
+2.	Traverse the Linked List:
+o	Start from the head node and iterate through the list to find the node that contains the given element (data).
+3.	Handle Deletion of the First Node:
+o	If the element to be deleted is found in the head node:
+	Update the head of the linked list to point to the next node (i.e., head = head->next).
+	Free the memory allocated to the node to be deleted.
+	Exit the function.
+4.	Traverse and Delete from the Middle or End:
+o	If the element is not in the head node, continue traversing the list by checking each node’s next pointer.
+o	When the node with the element is found, update the previous node’s next pointer to point to the next node of the node to be deleted (prev->next = current->next).
+o	Free the memory allocated to the node to be deleted.
+5.	Handle the Case when the Element is Not Found:
+o	If the element is not found in any node, print a message indicating the element is not present in the list.
+6.	End the Function.
 
-Result:
-Thus, the program is verified successfully
+## Program:
+```c
+struct Node{
+    char data; 
+    struct Node *next;
+}*head;
+void delete()
+{
+    if(head==NULL){
+        printf("List is empty\n");
+        return;
+    }
+    else if(head->next==NULL){
+        head=NULL;
+        free(head);
+        printf("Node deleted from the begining ...\n");
+    }
+    else{
+        struct Node *ptr;
+        ptr=head;
+        head=head->next;
+        free(ptr);
+        printf("Node deleted from the begining ...\n");
+    }
+}
+```
+## Output:
+![437946582-8d3d8c0c-f1d7-43ab-8e59-1c87e153360a](https://github.com/user-attachments/assets/2010b0d9-27e6-48d3-9a48-4226c19746fd)
+
+## Result:
+Thus, the function that deletes a given element from a linked list is verified successfully.
